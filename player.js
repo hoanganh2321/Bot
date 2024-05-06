@@ -63,12 +63,12 @@ function initializePlayer(client) {
             iconURL: 'https://cdn.discordapp.com/attachments/1230824451990622299/1236664581364125787/music-play.gif?ex=6638d524&is=663783a4&hm=5179f7d8fcd18edc1f7d0291bea486b1f9ce69f19df8a96303b75505e18baa3a&', 
             url: 'https://discord.gg/xQF9f9yUEM'
         })
-        .setDescription(`🎹 **Tên Bài Hát:** [${track.info.title}](${track.info.uri})\n➡️ **Nghệ Sĩ:** ${track.info.author}\n➡️ **Nền tảng :** YouTube, Spotify, SoundCloud`)
+        .setDescription(`➡️ **Song Name:** [${track.info.title}](${track.info.uri})\n➡️ **Author:** ${track.info.author}\n➡️ **Platforms :** YouTube, Spotify, SoundCloud`)
 
-        .setImage(`https://cdn.discordapp.com/attachments/1235508539439714314/1235577227505041469/taoanhdep_cover_glitch_44024.png?ex=66397db6&is=66382c36&hm=05004b2975fea78b3da9851966f926b3bd4a547c8f9f6430f2f297d1c750c5b3&`)
+        .setImage(`https://cdn.discordapp.com/attachments/1004341381784944703/1165201249331855380/RainbowLine.gif?ex=663939fa&is=6637e87a&hm=e02431de164b901e07b55d8f8898ca5b1b2832ad11985cecc3aa229a7598d610&`)
         .setThumbnail(track.info.thumbnail)
         .setTimestamp()
-        .setFooter({ text: 'Created by Kaioshin Dev 🔥 | KLinh Dev 👑| https://discord.gg/2zB48CedHG | '}); 
+        .setFooter({ text: 'make by Kaioshin | KLinh'}); 
 
 
 
