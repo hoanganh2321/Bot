@@ -104,7 +104,7 @@ function initializePlayer(client) {
         const message = await channel.send({ embeds: [embed], components: [actionRow] });
 
       
-        const filter = i => i.customId === 'Lặp Lại' || i.customId === 'Bỏ Qua' || i.customId === 'Tắt Lặp Lại' || i.customId === 'List Nhạc' || i.customId === 'Xóa List Nhạc';
+        const filter = i => i.customId === 'loopQueue' || i.customId === 'skipTrack' || i.customId === 'disableLoop' || i.customId === 'showQueue' || i.customId === 'clearQueue';
         const collector = message.createMessageComponentCollector({ filter, time: 180000 });
         setTimeout(() => {
             const disabledRow = new ActionRowBuilder()
@@ -126,21 +126,21 @@ function initializePlayer(client) {
                 setLoop(player, 'queue');
                 const loopEmbed = new EmbedBuilder()
             .setAuthor({
-                    name: 'Lặp Lại',
+                    name: 'Queue Loop!',
                     iconURL: 'https://cdn.discordapp.com/attachments/1156866389819281418/1157318080670728283/7905-repeat.gif?ex=66383bb4&is=6636ea34&hm=65f37cf88245f1c09285b547fda57b82828b3bbcda855e184f446d6ff43756b3&', 
                     url: 'https://discord.gg/xQF9f9yUEM'
                 })
             .setColor("#00FF00")
-            .setTitle("**Lặp Lại is Activated!**")
+            .setTitle("**Queue loop is Activated!**")
          
 
         await channel.send({ embeds: [loopEmbed] });
-            } else if (i.customId === 'Bỏ Qua') {
+            } else if (i.customId === 'skipTrack') {
                 player.stop();
                 const skipEmbed = new EmbedBuilder()
                 .setColor('#3498db')
                 .setAuthor({
-                  name: 'Bỏ Qua',
+                  name: 'Song Skipped',
                   iconURL: 'https://cdn.discordapp.com/attachments/1156866389819281418/1157269773118357604/giphy.gif?ex=6517fef6&is=6516ad76&hm=f106480f7d017a07f75d543cf545bbea01e9cf53ebd42020bd3b90a14004398e&',
                   url: 'https://discord.gg/FUEHs7RCqz'
                 })
@@ -154,21 +154,21 @@ function initializePlayer(client) {
                 const loopEmbed = new EmbedBuilder()
                 .setColor("#0099ff")
                 .setAuthor({
-                    name: 'Tắt Lặp Lại',
+                    name: 'Looping Off',
                     iconURL: 'https://cdn.discordapp.com/attachments/1230824451990622299/1230836684774576168/7762-verified-blue.gif?ex=6638b97d&is=663767fd&hm=021725868cbbc66f35d2b980585489f93e9fd366aa57640732dc49e7da9a80ee&', 
                     url: 'https://discord.gg/xQF9f9yUEM'
                 })
-                .setDescription('**Đã Tắt Lặp Lại**');
+                .setDescription('**Loop is Disabled for queue and single Song!**');
                   
     
             await channel.send({ embeds: [loopEmbed] });
-            } else if (i.customId === 'List Nhạc') {
+            } else if (i.customId === 'showQueue') {
 
 const pageSize = 10; 
 
 const queueMessage = queueNames.length > 0 ?
     queueNames.map((song, index) => `${index + 1}. ${song}`).join('\n') :
-    "List Nhạc Đang Trống.";
+    "The queue is empty.";
 
 
 const pages = [];
@@ -188,16 +188,16 @@ for (let i = 0; i < pages.length; i++) {
     await channel.send({ embeds: [queueEmbed] });
 }
 
-            } else if (i.customId === 'Xóa List Nhạc') {
+            } else if (i.customId === 'clearQueue') {
                 clearQueue(player);
                 const queueEmbed = new EmbedBuilder()
                 .setColor("#0099ff")
                 .setAuthor({
-                    name: 'Xóa List Nhạc',
+                    name: 'Queue Cleared',
                     iconURL: 'https://cdn.discordapp.com/attachments/1230824451990622299/1230836684774576168/7762-verified-blue.gif?ex=6638b97d&is=663767fd&hm=021725868cbbc66f35d2b980585489f93e9fd366aa57640732dc49e7da9a80ee&', 
                     url: 'https://discord.gg/xQF9f9yUEM'
                 })
-                .setDescription('** List Nhạc cleared sucessfully!**');
+                .setDescription('**Queue Songs cleared sucessfully!**');
                
     
             await channel.send({ embeds: [queueEmbed] });
@@ -219,7 +219,7 @@ for (let i = 0; i < pages.length; i++) {
             player.destroy();
             const queueEmbed = new EmbedBuilder()
                 .setColor("#0099ff")
-                .setDescription('**Bài Hát Đã Kết Thúc !  Disconnecting Bot!**');
+                .setDescription('**Queue Songs ended! Disconnecting Bot!**');
                
     
             await channel.send({ embeds: [queueEmbed] });
